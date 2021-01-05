@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './products/reportWebVitals';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import reduser from './reducers/reducer';
+
+import AppAuth from './auth/components/App/App';
+import AppProducts from './products/components/App/App';
+import reduser from './products/reducers/reducer';
 
 const store = createStore(reduser);   //main store
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <AppAuth />
+      <AppProducts />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
