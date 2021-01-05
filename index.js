@@ -21,7 +21,7 @@ async function mongoStart() {
 
     app.listen(port, () => { console.log(`Sever has runned on port - ${port}`) })
   } catch (e) {
-    console.log('ERROR - ${e}')
+    console.log(`ERROR - ${e}`)
     process.exit(1)   //exit with connect at error
   }
 }
