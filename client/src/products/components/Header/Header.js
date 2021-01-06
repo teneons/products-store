@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import logo from './logo.svg';
-import {connect} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import AddProduct from './AddProduct';

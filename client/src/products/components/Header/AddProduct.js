@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {add_product, search_product} from '../../reducers/actions';
+import {add_product} from '../../reducers/actions';
 
 class AddProduct extends Component {
   constructor(props) {
