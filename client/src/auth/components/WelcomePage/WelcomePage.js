@@ -11,7 +11,7 @@ export default class WelcomePage extends Component {
           <a href="/" className='text-decoration-none text-white fw-bold'>Products <span className="text-uppercase fw-bold badge bg-white text-dark">Store</span></a>
         </div>
 
-        <div className='d-flex justify-content-center align-content-center rounded-3 bg-dark shadow-lg' >
+        <div className='col-11 col-md-7 col-lg-4 d-flex justify-content-center align-content-center rounded-3 bg-dark shadow-lg' >
           
           <div className='m-2'>
             <a href="/signup" className='btn btn-lg btn-outline-light text-white fw-bold text-decoration-none'>Sign <span className="badge bg-white text-dark text-decoration-underline">UP</span></a>
