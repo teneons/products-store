@@ -5,9 +5,14 @@ export default class WelcomePage extends Component {
   render() {
 
     return (
-      <div className='container-fluid bg-secondary d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
+      <div className='container-fluid bg-secondary d-flex justify-content-center align-items-center flex-column' style={{ height: '100vh' }}>
+        
+        <div className="d-flex justify-content-center align-content-center display-4 mb-5">
+          <span className="text-white fw-bold">Products </span>
+          <span className="text-uppercase fw-bold badge bg-light text-dark">Store</span>
+        </div>
 
-        <div className='container col-4 d-flex justify-content-center align-content-center rounded-3 bg-dark shadow-lg' >
+        <div className='col-4 d-flex justify-content-center align-content-center rounded-3 bg-dark shadow-lg' >
           
           <div className='m-2'>
             <a href="/signup" className='btn btn-lg btn-outline-light fw-bold text-decoration-none'>Sign <span className="badge bg-light text-dark text-decoration-underline">UP</span></a>
