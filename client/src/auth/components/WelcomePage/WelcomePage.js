@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Body extends Component {
+export default class WelcomePage extends Component {
 
   render() {
 
