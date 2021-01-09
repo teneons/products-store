@@ -14,7 +14,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <AppAuth />
-      <AppProducts />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
