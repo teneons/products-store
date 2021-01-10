@@ -49,9 +49,9 @@ const SignIn = () => {
     </svg>
 
   return (
-    <div className='d-flex justify-content-center row'>
+    <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh'}}>
     <form className='col-10 col-sm-9 col-md-5 col-lg-3'>
-    <div className="alert alert-dark text-center fw-bold" role="alert">{userNames}</div>
+    <div className="alert alert-dark text-center fw-bold bg-light" role="alert">{userNames}</div>
     
       <div className='d-flex justify-content-center m-2'>
         <span className='display-6 text-dark'>Sign <span className="badge bg-dark text-white">In</span></span>
@@ -71,7 +71,7 @@ const SignIn = () => {
       </div>
 
       <span className='text-dark text-center'>Don't have an account yet? Then <a href='/signup' className='text-dark fw-bold'>register</a></span>
-      </form>
+    </form>
     </div>
   )
 }
