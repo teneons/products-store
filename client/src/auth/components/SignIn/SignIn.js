@@ -11,7 +11,7 @@ const SignIn = () => {
     const [emailClass, setEmailClass] = useState('form-control')
   const [passwordMsg, setPasswordMsg] = useState(null)
     const [passwordClass, setPasswordClass] = useState('form-control')
-  const [userNames, setUserNames] = useState(null)
+  const [userData, setUserData] = useState(null)
 
   //gets input data
   const getInputData = (e) => {
@@ -23,9 +23,9 @@ const SignIn = () => {
     try {
       const data = await request('/signin', 'POST', {...inputs})
       
-      //set furst & last names
+      //set data after good responsive
       if(data.firstName && data.lastName) {
-        await setUserNames(`Hello ${data.firstName} ${data.lastName}`)
+        await setUserData([data.id, data.firstName, data.lastName])
       }
 
       //set errors
@@ -51,8 +51,12 @@ const SignIn = () => {
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh'}}>
     <form className='col-10 col-sm-9 col-md-5 col-lg-3'>
-    <div className="alert alert-dark text-center fw-bold bg-light" role="alert">{userNames}</div>
     
+    <div className="toast d-flex align-items-center text-dakr bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+      <div className="toast-body">asd</div>
+      <button type="button" className="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+
       <div className='d-flex justify-content-center m-2'>
         <span className='display-6 text-dark'>Sign <span className="badge bg-dark text-white">In</span></span>
       </div>
