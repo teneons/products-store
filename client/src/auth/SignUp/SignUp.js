@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useHttp} from '../../../hooks/hooks';
+import {useHttp} from '../../hooks/hooks';
 
 const SignUp = () => {
   const {err, request} = useHttp()    //use hook

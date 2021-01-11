@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
-import AppAuth from './auth/components/App/App';
+import AppAuth from './auth/App/App';
 import AppProducts from './products/components/App/App';
 import reduser from './products/reducers/reducer';
 
