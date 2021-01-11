@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reportWebVitals from './products/reportWebVitals';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
@@ -18,5 +17,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-reportWebVitals();
