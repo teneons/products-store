@@ -3,6 +3,7 @@ import {useHttp} from '../../hooks/hooks';
 
 const SignIn = () => {
   const {err, request} = useHttp()
+  console.log(err)
 
   //use state
   const [inputs, setInputs] = useState({email: '', password: ''})
