@@ -4,8 +4,8 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 import AppAuth from './auth/App/App';
-import AppProducts from './products/components/App/App';
-import reduser from './products/reducers/reducer';
+import AppProducts from './products/App/App';
+import reduser from './reducers/reducer';
 
 const store = createStore(reduser);   //main store
 
