@@ -17,34 +17,25 @@ const SignIn = () => {
     e.preventDefault()
   }
 
-    //show/hide alert message
+  //show/hide alert message
   useEffect(() => {
     setAlertClass("alert alert-secondary alert-dismissible fade show")
+
     if(msgAlert === undefined || msgAlert === null) {
       setAlertClass("alert alert-secondary alert-dismissible fade hide")
     }
     
-    return () => setAlertClass("alert alert-secondary alert-dismissible fade hide")
   }, [msgAlert])
 
 
   //request
   const signIn = async () => {
-    try {
-      const data = await request('/signin', 'POST', {...inputs})
+    const data = await request('/signin', 'POST', {...inputs})
 
-      //set errorw
-      await setMsgAlert(data.message)
-      await setAlertClass("alert alert-secondary alert-dismissible fade show")
-      
-      //set data after good responsive
-      await setUserData(data)
-
-    } catch(e) {
-      throw e
-    }
+    await setMsgAlert(data.message)   //set error
+    await setUserData(data)   //set data after good responsive
   }
-  
+
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh'}}>
     <form className='col-10 col-sm-9 col-md-5 col-lg-3'>
