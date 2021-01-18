@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useHttp} from '../../hooks/hooks';
 
 const SignIn = () => {
@@ -6,7 +6,8 @@ const SignIn = () => {
 
   //state
   const [inputs, setInputs] = useState({email: '', password: ''})
-  const [msg, setMsg] = useState(null)
+  const [msgAlert, setMsgAlert] = useState(null)
+    const [alertClass, setAlertClass] = useState('alert alert-dark alert-dismissible fade hide')
   const [userData, setUserData] = useState(null)
 
 
@@ -16,14 +17,25 @@ const SignIn = () => {
     e.preventDefault()
   }
 
+    //show/hide alert message
+  useEffect(() => {
+    setAlertClass("alert alert-secondary alert-dismissible fade show")
+    if(msgAlert === undefined || msgAlert === null) {
+      setAlertClass("alert alert-secondary alert-dismissible fade hide")
+    }
+    
+    return () => setAlertClass("alert alert-secondary alert-dismissible fade hide")
+  }, [msgAlert])
+
 
   //request
   const signIn = async () => {
     try {
       const data = await request('/signin', 'POST', {...inputs})
-      
-      //set error
-      await setMsg(data.message)
+
+      //set errorw
+      await setMsgAlert(data.message)
+      await setAlertClass("alert alert-secondary alert-dismissible fade show")
       
       //set data after good responsive
       await setUserData(data)
@@ -32,14 +44,7 @@ const SignIn = () => {
       throw e
     }
   }
-
-  //svg icon
-  const svgSgnIn = <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" className="bi bi-door-open" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fillRule="evenodd" d="M1 15.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM11.5 2H11V1h.5A1.5 1.5 0 0 1 13 2.5V15h-1V2.5a.5.5 0 0 0-.5-.5z"/>
-    <path fillRule="evenodd" d="M10.828.122A.5.5 0 0 1 11 .5V15h-1V1.077l-6 .857V15H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117z"/>
-    <path d="M8 9c0 .552.224 1 .5 1s.5-.448.5-1-.224-1-.5-1-.5.448-.5 1z"/>
-    </svg>
-
+  
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh'}}>
     <form className='col-10 col-sm-9 col-md-5 col-lg-3'>
@@ -48,8 +53,8 @@ const SignIn = () => {
         <span className='display-6 text-dark'>Sign <span className="badge bg-dark text-white">In</span></span>
       </div>
 
-      <div className="alert alert-secondary alert-dismissible fade show" role="alert">
-        {msg}
+      <div className={alertClass} role="alert">
+        {msgAlert}
         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
       
@@ -62,7 +67,7 @@ const SignIn = () => {
         <label htmlFor="floatingInputGrid">Password</label>
       </div>
       <div className='d-flex justify-content-center m-2'>
-        <button type="button" className="btn btn-outline-dark" onClick={signIn}>Sign in{svgSgnIn}</button>
+        <button type="button" className="btn btn-outline-dark" onClick={signIn}>Sign in</button>
       </div>
 
       <span className='text-dark text-center'>Don't have an account yet? Then <a href='/signup' className='text-dark fw-bold'>register</a></span>
