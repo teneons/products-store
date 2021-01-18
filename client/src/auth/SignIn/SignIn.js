@@ -27,7 +27,7 @@ const SignIn = () => {
       const data = await request('/signin', 'POST', {...inputs})
       
       //set error
-      if(data.message !== null) await setMsg(data.message)
+      await setMsg(data.message)
       
       //set data after good responsive
       await setUserData(data)
@@ -57,15 +57,16 @@ const SignIn = () => {
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh'}}>
     <form className='col-10 col-sm-9 col-md-5 col-lg-3'>
-    
-    <div className="toast d-flex align-items-center text-dakr bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
-      <div className="toast-body">asd</div>
-      <button type="button" className="btn-close btn-close-white ms-auto me-2" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
 
       <div className='d-flex justify-content-center m-2'>
         <span className='display-6 text-dark'>Sign <span className="badge bg-dark text-white">In</span></span>
       </div>
+
+      <div className="alert alert-secondary alert-dismissible fade show" role="alert">
+        {msg}
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      
       <div className="mt-3 form-floating">
         <input type="email" className={emailClass} name='email' onChange={getInputData} id="exampleInputEmail1" placeholder="Email address" />
         <label htmlFor="floatingInputGrid">Email address</label>
