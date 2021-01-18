@@ -17,22 +17,19 @@ router.post('/signup',
         //validation
         const err = validationResult(req)
         if(!err.isEmpty()) {
-          return res.status(200).json({err: err.array(), message: 'Incorrect inputted data'})
+          return res.status(400).json({err: err.array(), message: 'Incorrect data inputted'})
         }
         
-        
-        const {firstName, lastName, email, password} = req.body   //gets data at react
+        const {firstName, lastName, email, password} = req.body   //data at react
 
         //check by email unique user
-        const candidate = await ModelUser.findOne({email})
-        if(candidate) {
-          return res.status(200).json({message: 'User with such email is exist'})
-        }
+        const newUserEmail = await ModelUser.findOne({email})
+        if(newUserEmail) return res.status(200).json({message: 'User with such email is exist'})
 
         //hash password
         const hashPassword = await bcryptjs.hash(password, 12)
 
-        //new user
+        //save new user to DB
         const user = new ModelUser({firstName, lastName, email, password: hashPassword})
         await user.save()
 
