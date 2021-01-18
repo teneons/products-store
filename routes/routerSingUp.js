@@ -7,9 +7,7 @@ const ModelUser = require('../models/ModelUser');
 //sign UP
 router.post('/signup',
     [ 
-      check('firstName', 'Inputted wrong name'),
-      check('lastName', 'Inputted wrong name'),
-      check('email', 'Wrong email').isEmail(),
+      check('email', 'Wrong email inputted').isEmail(),
       check('password', 'Password is short').isLength({min: 8})
     ], 
     async (req, res) => {
@@ -17,7 +15,7 @@ router.post('/signup',
         //validation
         const err = validationResult(req)
         if(!err.isEmpty()) {
-          return res.status(400).json({err: err.array(), message: 'Incorrect data inputted'})
+          return res.status(400).json({err: err.array()})
         }
         
         const {firstName, lastName, email, password} = req.body   //data at react
