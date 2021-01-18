@@ -15,7 +15,7 @@ router.post('/signup',
         //validation
         const err = validationResult(req)
         if(!err.isEmpty()) {
-          return res.status(400).json({err: err.array()})
+          return res.status(400).json({err: err.mapped()})
         }
         
         const {firstName, lastName, email, password} = req.body   //data at react

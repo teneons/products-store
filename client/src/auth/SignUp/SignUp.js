@@ -17,7 +17,15 @@ const SignUp = () => {
       setAlertMsg('Not all fields are filled')
     } else {
       const data = await request('/signup', 'POST', {...inputs})
-      setAlertMsg(data.err[0].msg)  
+
+      //check at exist data.err
+      if(typeof data.err !== 'undefined') {
+        //ckeck/set email field
+        if(data.err.email) {
+          setAlertMsg(data.err.email.msg)
+        } else if(data.err.password) setAlertMsg(data.err.password.msg)  //ckeck/set password field
+      } else setAlertMsg(data.message)  //set general message
+
     }
 
   }
