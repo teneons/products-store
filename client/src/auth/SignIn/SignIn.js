@@ -30,10 +30,15 @@ const SignIn = () => {
 
   //request
   const signIn = async () => {
-    const data = await request('/signin', 'POST', {...inputs})
+    if(inputs.email === '' || inputs.password === '') {
+      setMsgAlert('Not all fields are filled')
+    } else {
+      const data = await request('/signin', 'POST', {...inputs})
+    
+      await setMsgAlert(data.message)   //set error
+      await setUserData(data)   //set data after good responsive
+    }
 
-    await setMsgAlert(data.message)   //set error
-    await setUserData(data)   //set data after good responsive
   }
 
   return (

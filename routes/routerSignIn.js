@@ -19,7 +19,7 @@ router.post('/signin',
       //validation
       const err = validationResult(req)
       if(!err.isEmpty()) {
-        return res.status(400).json({err: err.array(), message: "Incorrect inputted data"})
+        return res.status(400).json({err: err.array(), message: "Incorrect data inputted"})
       }
       
       const {email, password} = req.body   //gets data at react
