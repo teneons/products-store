@@ -7,6 +7,7 @@ app.use(express.json({extended: true}))
 
 //processing request by react
 app.use('/', require('./routes/authRouter'))
+app.use('/', require('./routes/routerSignIn'))  //sign in
 
 const port = process.env.PORT || 3001
 
