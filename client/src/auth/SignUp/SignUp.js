@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useHttp} from '../../hooks/hooks';
 
 const SignUp = () => {
@@ -6,16 +6,26 @@ const SignUp = () => {
 
   //use useState
   const [inputs, setInputData] = useState({firstName: '', lastName: '', email: '', password: ''})
-  const [alertMsg, setAlertMsg] = useState(null)
+  const [msgAlert, setMsgAlert] = useState(null)
     const [alertClass, setAlertClass] = useState('alert alert-dark alert-dismissible fade hide')
 
   //gets data
   const getInputData = e => setInputData({...inputs, [e.target.name]: e.target.value})
 
+  //show/hide alert message
+  useEffect(() => {
+    setAlertClass("alert alert-secondary alert-dismissible fade show")
+
+    if(msgAlert === undefined || msgAlert === null) {
+      setAlertClass("alert alert-secondary alert-dismissible fade hide")
+    }
+    
+  }, [msgAlert])
+
   //request
   const signUp = async () => {
     if(inputs.firstName === '' || inputs.lastName === '' || inputs.email === '' || inputs.password === '') {
-      setAlertMsg('Not all fields are filled')
+      setMsgAlert('Not all fields are filled')
     } else {
       const data = await request('/signup', 'POST', {...inputs})
 
@@ -23,13 +33,14 @@ const SignUp = () => {
       if(typeof data.err !== 'undefined') {
         //ckeck/set email field
         if(data.err.email) {
-          setAlertMsg(data.err.email.msg)
-        } else if(data.err.password) setAlertMsg(data.err.password.msg)  //ckeck/set password field
-      } else setAlertMsg(data.message)  //set general message
+          setMsgAlert(data.err.email.msg)
+        } else if(data.err.password) setMsgAlert(data.err.password.msg)  //ckeck/set password field
+      } else setMsgAlert(data.message)  //set general message
 
     }
 
   }
+  
 
   return (
     <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh'}}>
@@ -40,24 +51,24 @@ const SignUp = () => {
         </div>
 
         <div className={alertClass} role="alert">
-          {alertMsg}
+          {msgAlert}
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
         <div className="mt-3 form-floating">
-          <input type="text" className="form-control" name='firstName' onChange={getInputData} placeholder="Email address" />
+          <input type="text" className="form-control" name='firstName' onChange={getInputData} placeholder="First name" />
           <label htmlFor="floatingInputGrid">First name</label>
         </div>
         <div className="mt-3 form-floating">
-          <input type="text" className="form-control" name='lastName' onChange={getInputData} placeholder="Email address" />
+          <input type="text" className="form-control" name='lastName' onChange={getInputData} placeholder="Last name" />
           <label htmlFor="floatingInputGrid">Last name</label>
         </div>
         <div className="mt-3 form-floating">
-          <input type="email" className="form-control" name='lastName' onChange={getInputData} placeholder="Email address" />
+          <input type="email" className="form-control" name='email' onChange={getInputData} placeholder="Email address" />
           <label htmlFor="floatingInputGrid">Email address</label>
         </div>
         <div className="mt-3 form-floating">
-          <input type="password" className="form-control" name='lastName' onChange={getInputData} placeholder="Password" />
+          <input type="password" className="form-control" name='password' onChange={getInputData} placeholder="Password" />
           <label htmlFor="floatingInputGrid">Password</label>
         </div>
 
