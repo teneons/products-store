@@ -27,14 +27,14 @@ router.post('/signin',
       //check inputted data
       const user = await ModelUser.findOne({email})
       if(!user) {
-        return res.status(400).json({message: "User not finded"})
+        return res.status(400).json({message: "There is no such user"})
       }
 
       //check - match password at DB
       const isMatch = await bcryptjs.compare(password, user.password)
 
       if(!isMatch) {
-        return res.status(400).json({message: "Incorrect password"})
+        return res.status(400).json({message: "Incorrect email or password"})
       }
 
       const token = jsonwebtoken.sign(
