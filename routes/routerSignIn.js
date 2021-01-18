@@ -19,7 +19,7 @@ router.post('/signin',
       //validation
       const err = validationResult(req)
       if(!err.isEmpty()) {
-        return res.status(200).json({err: err.array(), message: 'Incorrect inputted data'})
+        return res.status(400).json({err: err.array(), message: 'Incorrect inputted data'})
       }
       
       const {email, password} = req.body   //gets data at react
@@ -27,14 +27,14 @@ router.post('/signin',
       //check inputted data
       const user = await ModelUser.findOne({email})
       if(!user) {
-        return res.status(200).json({message: 'User not finded'})
+        return res.status(400).json({message: 'User not finded'})
       }
 
       //check - match password at DB
       const isMatch = await bcryptjs.compare(password, user.password)
 
       if(!isMatch) {
-        return res.status(200).json({message: 'Incorrect password'})
+        return res.status(400).json({message: 'Incorrect password'})
       }
 
       const token = jsonwebtoken.sign(
