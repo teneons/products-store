@@ -3,7 +3,6 @@ import {useHttp} from '../../hooks/hooks';
 
 const SignIn = () => {
   const {err, request} = useHttp()
-  console.log(err)
 
   //use state
   const [inputs, setInputs] = useState({email: '', password: ''})
@@ -20,14 +19,12 @@ const SignIn = () => {
     e.preventDefault()
   }
 
-  const signUp = async () => {
+  const signIn = async () => {
     try {
       const data = await request('/signin', 'POST', {...inputs})
       
       //set data after good responsive
-      if(data.firstName && data.lastName) {
-        await setUserData([data.id, data.firstName, data.lastName])
-      }
+      await setUserData(data)
 
       //set errors
       if(data.err[0].param === 'email') {
@@ -39,7 +36,9 @@ const SignIn = () => {
         await setPasswordClass('form-control is-invalid')
       }
 
-    } catch(e) {}
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   //svg icon
@@ -72,7 +71,7 @@ const SignIn = () => {
         <div className="invalid-feedback">{passwordMsg}</div>
       </div>
       <div className='d-flex justify-content-center m-2'>
-        <button type="button" className="btn btn-outline-dark" onClick={signUp}>Sign in{svgSgnIn}</button>
+        <button type="button" className="btn btn-outline-dark" onClick={signIn}>Sign in{svgSgnIn}</button>
       </div>
 
       <span className='text-dark text-center'>Don't have an account yet? Then <a href='/signup' className='text-dark fw-bold'>register</a></span>

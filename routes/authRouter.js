@@ -87,7 +87,7 @@ router.post('/signin',
 
 
     } catch (e) {
-      res.status(500).json({"message": "Something was wrong at sign up. Try again"})
+      res.status(500).json({"message": "Something was wrong at sign in. Try again"})
   }
 })
 
