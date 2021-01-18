@@ -55,18 +55,20 @@ const SignIn = () => {
       </div>
       
       <div className="mt-3 form-floating">
-        <input type="email" className="form-control" name='email' onChange={getInputData} id="exampleInputEmail1" placeholder="Email address" />
+        <input type="email" className="form-control" name='email' onChange={getInputData} placeholder="Email address" />
         <label htmlFor="floatingInputGrid">Email address</label>
       </div>
       <div className="mt-3 form-floating">
-        <input type="password" className="form-control" name='password' onChange={getInputData} id="exampleInputPassword1" placeholder="Password" />
+        <input type="password" className="form-control" name='password' onChange={getInputData} placeholder="Password" />
         <label htmlFor="floatingInputGrid">Password</label>
       </div>
-      <div className='d-flex justify-content-center m-2'>
-        <button type="button" className="btn btn-outline-dark" onClick={signIn}>Sign in</button>
+      <div className='d-flex justify-content-center m-3'>
+        <button type="button" className="btn btn-lg btn-outline-dark" onClick={signIn}>Sign in</button>
       </div>
 
-      <span className='text-dark text-center'>Don't have an account yet? Then <a href='/signup' className='text-dark fw-bold'>register</a></span>
+      <div className='d-flex justify-content-center'>
+        <span className='text-dark text-center'>Don't have an account yet? Then <a href='/signup' className='text-dark fw-bold'>register</a></span>
+      </div>
     </form>
     </div>
   )
