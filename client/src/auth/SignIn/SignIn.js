@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import {useHttp} from '../../hooks/hooks';
 
 const SignIn = () => {
-  const {err, request} = useHttp()
+  const {request} = useHttp()
 
-  //use state
+  //state
   const [inputs, setInputs] = useState({email: '', password: ''})
   const [msg, setMsg] = useState(null)
   const [emailMsg, setEmailMsg] = useState(null)
@@ -13,15 +13,21 @@ const SignIn = () => {
     const [passwordClass, setPasswordClass] = useState('form-control')
   const [userData, setUserData] = useState(null)
 
+
   //gets input data
   const getInputData = (e) => {
     setInputs({...inputs, [e.target.name]: e.target.value})
     e.preventDefault()
   }
 
+
+  //request
   const signIn = async () => {
     try {
       const data = await request('/signin', 'POST', {...inputs})
+      
+      //set error
+      if(data.message !== null) await setMsg(data.message)
       
       //set data after good responsive
       await setUserData(data)
@@ -37,7 +43,7 @@ const SignIn = () => {
       }
 
     } catch(e) {
-      console.log(e)
+      throw e
     }
   }
 
