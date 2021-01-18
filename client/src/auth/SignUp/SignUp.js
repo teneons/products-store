@@ -2,22 +2,19 @@ import React, {useState} from 'react';
 import {useHttp} from '../../hooks/hooks';
 
 const SignUp = () => {
-  const {err, request} = useHttp()    //use hook
+  const {request} = useHttp()    //use hook
 
   //use useState
   const [inputs, setInputData] = useState({firstName: '', lastName: '', email: '', password: ''})
-  const [outMsg, setMsg] = useState(null)
+  const [alertMsg, setAlertMsg] = useState(null)
 
   //gets data
-  const getInputData = e => {
-    setInputData({...inputs, [e.target.name]: e.target.value})
-  }
+  const getInputData = e => setInputData({...inputs, [e.target.name]: e.target.value})
 
+  //request
   const registerIn = async () => {
-    try {
-      const data = await request('/signup', 'POST', {...inputs})
-      setMsg(data.message)
-    } catch(e) {}
+    const data = await request('/signup', 'POST', {...inputs})
+    setAlertMsg(data.err[0].msg)
   }
 
   const sbgSgnUp = <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" className="bi bi-ui-radios" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +25,7 @@ const SignUp = () => {
   return (
     <div className='d-flex justify-content-center'>
       <form className="row g-3 needs-validatio col-11 col-sm-10 col-md-7 col-lg-4" noValidate>
-      <div className="alert alert-dark text-center fw-bold" role="alert">{outMsg}</div>
+      <div className="alert alert-dark text-center fw-bold" role="alert">{alertMsg}</div>
       <div className='column'>
         <div className='d-flex justify-content-center m-2'>
           <span className='display-6 text-dark'>Sign <span className="badge bg-dark text-white">Up</span></span>
