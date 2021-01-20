@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
-import AppAuth from './auth/App/App';
-import AppProducts from './products/App/App';
+import App from './auth/App/App';
 import reduser from './reducers/reducer';
 
 const store = createStore(reduser);   //main store
@@ -12,7 +11,7 @@ const store = createStore(reduser);   //main store
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AppAuth />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
