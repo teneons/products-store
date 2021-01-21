@@ -9,7 +9,7 @@ import {useState, useCallback, useEffect} from 'react'
     setToken(userToken)
     setId(userId)
 
-    localStorage.setItem('sesіonData', JSON.stringify({token, id}))
+    localStorage.setItem('sesіonData', JSON.stringify({token: userToken, id: userId}))
   }, [])
   
   const signOut = useCallback(() => {
