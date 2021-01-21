@@ -1,6 +1,6 @@
 import {useState, useCallback, useEffect} from 'react'
 
- const useAuth = () => {
+ export const useAuth = () => {
 
   const [token, setToken] = useState(null)
   const [id, setId] = useState(null)
@@ -28,6 +28,6 @@ import {useState, useCallback, useEffect} from 'react'
   }, [signIn])
 
 
-  return {signIn, signOut}
+  return {signIn, signOut, token, id}
 
 }

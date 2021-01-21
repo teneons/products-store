@@ -1,8 +1,11 @@
 import {BrowserRouter as Router} from 'react-router-dom';
 import {routes} from '../routes/routes';
+import {useAuth} from '../../hooks/authHook';
 
 function App() {
   const rts = routes(true)
+  const {signIn, signOut, token, id} = useAuth()
+
   return (
     <div className="App">
       <Router>
