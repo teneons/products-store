@@ -10,10 +10,15 @@ export const routes = isAuth => {
   if(isAuth) {
     return(
       <Switch>
+        <Route path='/products' component={Products} />
+      </Switch>
+    )
+  } else {
+    return(
+      <Switch>
         <Route path='/signup' component={SignUp} />
         <Route path='/signin' component={SignIn} />
         <Route path='/' component={WelcomePage} exact/>
-        <Route path='/products' component={Products} />
       </Switch>
     )
   }

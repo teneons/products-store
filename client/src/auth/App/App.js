@@ -3,7 +3,7 @@ import {routes} from '../routes/routes';
 import {useAuth} from '../../hooks/authHook';
 
 function App() {
-  const rts = routes(true)
+  const rts = routes(false)
   const {signIn, signOut, token, id} = useAuth()
 
   return (
