@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Redirect } from 'react-router-dom';
+import {Switch, Route } from 'react-router-dom';
 
 import WelcomePage from '../WelcomePage/WelcomePage';
 import SignUp from '../SignUp/SignUp';
@@ -22,11 +22,4 @@ export const routes = isAuth => {
       </Switch>
     )
   }
-
-  return(
-    <Switch>
-      <Route path='/' component={WelcomePage} exact/>
-      <Redirect to='/' />
-    </Switch>
-  )
 }
