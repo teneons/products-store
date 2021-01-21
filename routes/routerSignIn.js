@@ -43,7 +43,7 @@ router.post('/signin',
         {expiresIn: '1h'}
       )
 
-      res.json({token, idUser: user.id, firstName: user.firstName, lastName: user.lastName})
+      res.json({token, id: user.id, firstName: user.firstName, lastName: user.lastName})
 
 
     } catch (e) {
