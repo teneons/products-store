@@ -1,10 +1,11 @@
-import { sign } from 'jsonwebtoken'
 import {createContext} from 'react'
 
+function sign() {}
+
 export const authContext = createContext({
-  isAuth: false,
   token: null,
   id: null,
-  singIn: sign,
-  signOut: sign
+  isAuth: false,
+  logIn: sign,
+  logOut: sign
 })

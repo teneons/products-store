@@ -5,14 +5,14 @@ import {useState, useCallback, useEffect} from 'react'
   const [token, setToken] = useState(null)
   const [id, setId] = useState(null)
 
-  const signIn = useCallback((userToken, userId) => {
+  const logIn = useCallback((userToken, userId) => {
     setToken(userToken)
     setId(userId)
 
     localStorage.setItem('sesіonData', JSON.stringify({token: userToken, id: userId}))
   }, [])
   
-  const signOut = useCallback(() => {
+  const logOut = useCallback(() => {
     setToken(null)
     setId(null)
     localStorage.removeItem('sesіonData')
@@ -23,11 +23,11 @@ import {useState, useCallback, useEffect} from 'react'
     const data = JSON.parse(localStorage.getItem('sesіonData'))
 
     if(data && data.token) {
-      signIn(data.token, data.id)
+      logIn(data.token, data.id)
     }
-  }, [signIn])
+  }, [logIn])
 
 
-  return {signIn, signOut, token, id}
+  return {token, id, logIn, logOut}
 
 }

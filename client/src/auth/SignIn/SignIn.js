@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {useHttp} from '../../hooks/hooks';
+import { authContext } from '../../Context/authContext';
 
 const SignIn = () => {
+  const authCntxt = useContext(authContext)  //context
   const {request} = useHttp()
 
   //state
@@ -29,11 +31,12 @@ const SignIn = () => {
 
 
   //request
-  const signIn = async () => {
+  const signInHandler = async () => {
     if(inputs.email === '' || inputs.password === '') {
       setMsgAlert('Not all fields are filled')
     } else {
       const data = await request('/signin', 'POST', {...inputs})
+      authCntxt.logIn(data.token, data.id)
     
       await setMsgAlert(data.message)   //set error
       await setUserData(data)   //set data after good responsive
@@ -63,7 +66,7 @@ const SignIn = () => {
         <label htmlFor="floatingInputGrid">Password</label>
       </div>
       <div className='d-flex justify-content-center m-3'>
-        <button type="button" className="btn btn-lg btn-outline-dark" onClick={signIn}>Sign in</button>
+        <button type="button" className="btn btn-lg btn-outline-dark" onClick={signInHandler}>Sign in</button>
       </div>
 
       <div className='d-flex justify-content-center'>

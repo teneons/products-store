@@ -4,13 +4,13 @@ import {useAuth} from '../../hooks/authHook';
 import { authContext } from '../../Context/authContext';
 
 function App() {
-  const {signIn, signOut, token, id} = useAuth();
+  const {token, id, logIn, logOut} = useAuth();
   const isAuth = !!token;
   const rts = routes(isAuth);
 
   return (
     <div className="App">
-      <authContext.Provider value={isAuth ,signIn, signOut, token, id}>
+      <authContext.Provider value={{token, id, isAuth, logIn, logOut}}>
         <Router>
           {rts}
         </Router>
