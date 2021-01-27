@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route } from 'react-router-dom';
+import {Switch, Route, Redirect } from 'react-router-dom';
 
 import WelcomePage from '../WelcomePage/WelcomePage';
 import SignUp from '../SignUp/SignUp';
@@ -11,6 +11,7 @@ export const routes = isAuth => {
     return(
       <Switch>
         <Route path='/products' component={Products} />
+        <Redirect to='/products' />
       </Switch>
     )
   } else {
@@ -19,6 +20,7 @@ export const routes = isAuth => {
         <Route path='/signup' component={SignUp} />
         <Route path='/signin' component={SignIn} />
         <Route path='/' component={WelcomePage} exact/>
+        <Redirect to='/' />
       </Switch>
     )
   }
