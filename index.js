@@ -9,7 +9,7 @@ app.use(express.json({extended: true}))
 app.use('/', require('./routes/routerSingUp'))  //sign up
 app.use('/', require('./routes/routerSignIn'))  //sign in
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 5000
 
 //start server, connect mongo
 async function mongoStart() {
